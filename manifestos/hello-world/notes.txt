@@ -1,0 +1,2 @@
+minikube addons enable ingress
+minikube service hello-world-service --url -n bootcamp
