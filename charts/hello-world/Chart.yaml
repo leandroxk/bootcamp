@@ -1,0 +1,10 @@
+apiVersion: v2
+# Chart Name
+name: hello-world
+description: 'BootCamp :: Hello World'
+# This is the chart type.
+type: application
+# This is the chart version.
+version: "1.0.0"
+# This is the version number of the application being deployed. (version image container)
+appVersion: "2.0"

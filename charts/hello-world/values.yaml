@@ -1,0 +1,26 @@
+#ProductName
+nameOverride: "bootcamp"
+
+#Application "hello-world"
+fullnameOverride: "hello-world"
+
+#Sets number of replicas for deployments.
+replicaCount: 1
+
+#Defines required resources and limits.
+resources:
+  limits:
+    cpu: 125m
+    memory: 125Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+#Defines service attributes.
+service:
+  type: NodePort
+  port: 8080
+
+image:
+  repository: gcr.io/google-samples/hello-app
+  pullPolicy: Always

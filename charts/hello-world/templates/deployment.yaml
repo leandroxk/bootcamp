@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "chart.fullname" . }}-deployment
+  labels:
+    app: {{ include "chart.fullname" . }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ include "chart.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "chart.fullname" . }}
+    spec:
+      containers:
+      - name: hello-world
+        image: {{ include "chart.image" . | quote }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 8080
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
